@@ -171,12 +171,15 @@ class Main {
     int Ppower = 0;
     int pclass = 0;
     int t = 0;
+    int time = 0;
+    int tc = 0;
+    int tcount = 0;
     String go = "Game Over";
     String nope = "\nYou don't have mp so you deicde to attack the Slime";
     String choice = "\nWhat is your choice? ";
     System.out.println("Started Game \n \nA Slime appered\n");
     //Quick Play
-    System.out.println("Quick Play? (will auto pick your choices)\n1.Yes\n2.No");
+    System.out.println("Quick Play? (will auto pick your choices and will be no round limt)\n1.Yes\n2.No");
     System.out.print(choice);
     int q = scan.nextInt();
     switch(q){
@@ -192,6 +195,7 @@ class Main {
           PlayerHp = l[0];
           Ppower = l[1];
           PlayerMPlv1 = l[2];
+          time = 100;
         break;
       case 2:
         //Slime Type
@@ -212,12 +216,30 @@ class Main {
         PlayerHp = l[0];
         Ppower = l[1];
         PlayerMPlv1 = l[2];
-        System.out.println("Class Picked");
+        System.out.println("Class Picked\n");
+        System.out.println("Round Limit? \n 1.Yes \n 2.No");
+        tc = scan.nextInt();
+        switch(tc){
+          default:
+            time = 100;
+            break;
+          case 1:
+            System.out.println("How many rounds? ");
+            System.out.print(choice);
+            time = scan.nextInt();
+            tcount = time;
+            break;
+        }
     }
+    System.out.println("Starting Battle");
     //Battle
-    for (int i = 1; i < 21; i++){
+    for (int i = 1; i < time; i++){
       System.out.println("");
       System.out.println("Round: " + i);
+      if (tc == 1){
+        tcount = tcount - 1;
+        System.out.println("Rounds left: " + tcount);
+      }
       System.out.println("\nSlime: ");
       System.out.println("Hp: " + Slimelv1Hp);
       System.out.println("Mp: " + SlimeMP);
