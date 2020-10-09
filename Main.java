@@ -230,6 +230,7 @@ class Main {
             tcount = time;
             break;
         }
+        System.out.println("Round Limit setted\n");
     }
     System.out.println("Starting Battle");
     //Battle
