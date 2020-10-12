@@ -333,6 +333,10 @@ class Main {
         System.out.println(go);
         System.exit(0);
       }
-    } 
+    }
+    if (tcount == 0){
+      System.out.println("All your rounds are over and the Slime is still live");
+      System.out.println(go);
+    }
   }
 }
