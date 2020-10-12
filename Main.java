@@ -306,6 +306,7 @@ class Main {
       if (Slimelv1Hp < 0){
         System.out.println("The Slime has been killed, Good Job");
         System.out.println(go);
+        scan.close();
         System.exit(0);
       }
       SlimeRA = ran.nextInt(2);
@@ -319,6 +320,7 @@ class Main {
           if (SlimeMP > 0){
             Slimelv1Hp = Slime.heal(t,Slimelv1Hp);
             System.out.println("The Slime deicde to heal and now have " + Slimelv1Hp);
+            SlimeMp = SlimeMp - 3;
             break;
           }
           else{
@@ -331,12 +333,15 @@ class Main {
       if (PlayerHp < 0){
         System.out.println("You are dead and the slime still is a live");
         System.out.println(go);
+        scan.close();
         System.exit(0);
       }
     }
     if (tcount == 0){
       System.out.println("All your rounds are over and the Slime is still live");
       System.out.println(go);
+      scan.close();
+      System.exit(0);
     }
   }
 }
