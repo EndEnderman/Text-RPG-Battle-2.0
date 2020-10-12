@@ -320,7 +320,7 @@ class Main {
           if (SlimeMP > 0){
             Slimelv1Hp = Slime.heal(t,Slimelv1Hp);
             System.out.println("The Slime deicde to heal and now have " + Slimelv1Hp);
-            SlimeMp = SlimeMp - 3;
+            SlimeMP = SlimeMP - 3;
             break;
           }
           else{
