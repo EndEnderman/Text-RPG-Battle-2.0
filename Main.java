@@ -34,6 +34,22 @@ class Player{
     }
     return Slimelv1Hp;
   }
+
+  public static int heal(int PlayerHp, int PlayerMp){
+    Random ran = new Random();
+    int r = 0;
+    if (PlayerMp <= 5){
+      r = Startup.NoZero(ran.nextInt(3));
+    }
+    else if(PlayerMp > 10){
+      r = Startup.NoZero(ran.nextInt(5));
+    }
+    else if (PlayerMp < 10){
+      r = Startup.NoZero(ran.nextInt(4));
+    }
+    PlayerHp = PlayerHp + r;
+    return PlayerHp;
+  }
 }
 
 class Slime{
@@ -109,7 +125,7 @@ class Startup{
     int Ppower = 5;
     switch (pclass){
       default:
-        System.out.println("Setted Player Class Default");
+        System.out.println("Setted Player Class to Default");
         break;
       case 2:
         PlayerHp = 15;
@@ -119,18 +135,19 @@ class Startup{
       case 3:
         PlayerHp = 15;
         PlayerMPlv1 = 15;
-        System.out.println("Setted Player Class Wizard");
+        Ppower = 3;
+        System.out.println("Setted Player Class to Wizard");
         break;
       case 4:
-        PlayerHp = 25;
+        PlayerHp = 20;
         Ppower = 3;
-        System.out.println("Setted Player Class Knight");
+        System.out.println("Setted Player Class to Knight");
         break;
       case 5:
         PlayerHp = 15;
         PlayerMPlv1 = 5;
         Ppower = 5;
-        System.out.println("Setted Player Class Classic");
+        System.out.println("Setted Player Class to Classic");
         break;
     }
     l[0] = PlayerHp;
@@ -265,15 +282,15 @@ class Main {
           System.out.println("You attack the Slime and losed " + l[0] + " Hp so it has now " + l[1] + " Hp");
           break;
         case 2:
-          System.out.print("Spells: \n1. Fire \n2. Water \n\nWhat you will do? ");
+          System.out.print("Spells: \n1. Fire \n2. Water \n3. Heal \n\nWhat you will do? ");
           Spellc = scan.nextInt();
           switch(Spellc){
             default:          
             l = Player.attack(Ppower,Slimelv1Hp);
             Slimelv1Hp = l[1];
-            System.out.println("You attack the Slime and losed " + l[0] + " Hp so it has now " + l[1] + " Hp"); 
+            System.out.println("You attack the Slime and losed " + l[0] + " Hp so it has now " + l[1] + " Hp");
             case 1:
-              if (PlayerMPlv1 > 3){
+              if (PlayerMPlv1 >= 3){
                 Slimelv1Hp = Player.fire(t,Slimelv1Hp);
                 System.out.println("\nYou Casted Fire to the Slime and now have " + Slimelv1Hp + " Hp");
                 PlayerMPlv1 = PlayerMPlv1 - 3;
@@ -287,11 +304,24 @@ class Main {
               break;
               }
             case 2:
-              if (PlayerMPlv1 > 3){
+              if (PlayerMPlv1 >= 3){
                 Slimelv1Hp = Player.water(t,Slimelv1Hp);
                 System.out.println("\nYou Casted Water to the Slime and now have " + Slimelv1Hp + " Hp");
                 PlayerMPlv1 = PlayerMPlv1 - 3;
               break;
+              }
+              else{
+                l = Player.attack(Ppower,Slimelv1Hp);
+                Slimelv1Hp = l[1];
+                System.out.println(nope);
+                System.out.println("\nYou attack the Slime and losed " + l[0] + " Hp so it has now " + l[1] + " Hp");
+                break;
+              }
+            case 3:
+              if (PlayerMPlv1 >= 3){
+                PlayerHp = Player.heal(PlayerHp,PlayerMPlv1);
+                System.out.println("\nYou deicde to Heal yourself now your hp is " + PlayerHp);
+                break;
               }
               else{
                 l = Player.attack(Ppower,Slimelv1Hp);
