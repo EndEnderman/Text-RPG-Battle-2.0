@@ -55,29 +55,45 @@ class Player{
 class Slime{
   public static int attack(int t, int SlimeAttack){
     Random ran = new Random();
+    int a = 0;
     switch(t){
       case 0:
-        t = Startup.NoZero(ran.nextInt(SlimeAttack - 3));
+        a = Startup.NoZero(ran.nextInt(SlimeAttack - 3));
         break;
       case 1:
-        t = Startup.NoZero(ran.nextInt(SlimeAttack));
+        a = Startup.NoZero(ran.nextInt(SlimeAttack));
         break;
     }
-    return t;
+    return a;
   }
 
   public static int heal(int t, int hp){
     Random ran = new Random();
+    int a = 0;
       switch(t){
         case 0:
-          t = Startup.NoZero(ran.nextInt(5));
+          a = Startup.NoZero(ran.nextInt(5));
           break;
         case 1:
-          t = Startup.NoZero(ran.nextInt(3));
+          a = Startup.NoZero(ran.nextInt(3));
           break;
       }
-      hp = hp + t;
+      hp = hp + a;
       return hp;
+  }
+  
+  public static int spell(int t){
+    Random ran = new Random();
+    int a = 0;
+    switch (t){
+      case 0:
+        a = Startup.NoZero(ran.nextInt(5));
+        System.out.println("Slime Casted Water");
+      case 1:
+        a = Startup.NoZero(ran.nextInt(5));
+        System.out.println("Slime Casted Fire");
+    }
+    return a;
   }
 }
 
@@ -196,7 +212,7 @@ class Main {
     String choice = "\nWhat is your choice? ";
     System.out.println("Started Game \n \nA Slime appered\n");
     //Quick Play
-    System.out.println("Quick Play? (will auto pick your choices and will be no round limt)\n1.Yes\n2.No");
+    System.out.println("Quick Play? (will auto pick your choices and no round limt)\n1.Yes\n2.No");
     System.out.print(choice);
     int q = scan.nextInt();
     switch(q){
@@ -241,8 +257,7 @@ class Main {
             time = 100;
             break;
           case 1:
-            System.out.println("How many rounds? ");
-            System.out.print(choice);
+            System.out.print("How many rounds? ");
             time = scan.nextInt();
             tcount = time;
             break;
@@ -351,6 +366,18 @@ class Main {
             Slimelv1Hp = Slime.heal(t,Slimelv1Hp);
             System.out.println("The Slime deicde to heal and now have " + Slimelv1Hp);
             SlimeMP = SlimeMP - 3;
+            break;
+          }
+          else{
+            Sattacklv1 = Slime.attack(t, SlimePower);
+            PlayerHp = PlayerHp - Sattacklv1;
+            System.out.println("The Slime deicde to attack you and you losed " + Sattacklv1 + " Hp");
+            break;
+          }
+        case 3:
+          if (SlimeMP > 0){
+            Sattacklv1 = Slime.spell(t);
+            PlayerHp = PlayerHp - Sattacklv1;
             break;
           }
           else{
