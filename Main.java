@@ -174,7 +174,7 @@ class Startup{
 
   public static int NoZero(int n){
     Random ran = new Random();
-    switch(0){
+    switch(n){
       default:
         break;
       case 0:
